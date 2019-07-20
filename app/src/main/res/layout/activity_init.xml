@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|center|center_horizontal"
+        android:background="#ECF1ED">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="608dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/initimage1" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:paddingLeft="10dp"
+            android:paddingTop="50dp"
+            android:paddingRight="10dp"
+            android:text="Administra tu ganado de  una manera profesional"
+            android:textAlignment="center"
+            android:textColor="#ECF1ED"
+            android:textSize="30sp"
+            android:typeface="sans" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:layout_gravity="bottom"
+            android:addStatesFromChildren="false"
+            android:background="#20393D"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtAcceder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="ACCEDER"
+                android:textAlignment="center"
+                android:textColor="#ECF1ED"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rect" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="REGISTRAR"
+                android:textAlignment="center"
+                android:textColor="#ECF1ED"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>
