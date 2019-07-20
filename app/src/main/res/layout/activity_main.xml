@@ -22,7 +22,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imgMenu"
                     android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -83,6 +83,7 @@
                         android:textColor="#ECF1ED"
                         android:textSize="24sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,6 +113,7 @@
                         android:textColor="#ECF1ED"
                         android:textSize="24sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,6 +143,7 @@
                         android:textColor="#ECF1ED"
                         android:textSize="24sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -170,6 +173,7 @@
                         android:textColor="#ECF1ED"
                         android:textSize="24sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,6 +203,7 @@
                         android:textColor="#ECF1ED"
                         android:textSize="24sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -228,6 +233,7 @@
                         android:textColor="#ECF1ED"
                         android:textSize="24sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -267,4 +273,26 @@
             android:orientation="vertical"></LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lytMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="283dp"
+            android:layout_height="match_parent"
+            android:background="#20393D"
+            android:orientation="vertical"
+            android:visibility="visible"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lytMenuClose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+    </LinearLayout>
+
 </FrameLayout>
