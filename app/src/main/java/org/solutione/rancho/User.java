@@ -1,35 +1,36 @@
 package org.solutione.rancho;
 
+
+//this is very simple class and it only contains the user attributes, a constructor and the getters
+// you can easily do this by right click -> generate -> constructor and getters
 public class User {
+
     private int id;
-    private String usuario,apellidos, email, password;
+    private String username, email, gender,surname;
 
-    public User(int id, String usuario, String apellidos,String email, String password) {
+    public User(int id, String username,String surname, String email, String gender) {
         this.id = id;
-        this.usuario = usuario;
-        this.apellidos=apellidos;
+        this.username = username;
+        this.surname=surname;
         this.email = email;
-        this.password= password;
+        this.gender = gender;
     }
-
-
 
     public int getId() {
         return id;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUsername() {
+        return username;
     }
-    public String getApellidos() {
-        return apellidos;
-    }
+
+public String getSurname(){return  surname;}
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getGender() {
+        return gender;
     }
 }
