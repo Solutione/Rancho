@@ -100,10 +100,10 @@ public class LoginActivity extends AppCompatActivity {
                         //creating a new user object
                         User user = new User(
                                 userJson.getInt("id"),
-                                userJson.getString("nombre"),
-                                userJson.getString("apellidos"),
-                                userJson.getString("correo"),
-                                userJson.getString("sexo")
+                                userJson.getString("username"),
+                                userJson.getString("surname"),
+                                userJson.getString("email"),
+                                userJson.getString("gender")
                         );
 
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);

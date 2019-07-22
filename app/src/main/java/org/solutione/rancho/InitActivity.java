@@ -21,10 +21,21 @@ public class InitActivity extends AppCompatActivity {
         txtAcceder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent (getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);
             }
         });
 
+        findViewById(R.id.txtRegistrar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //open register screen
+                finish();
+                startActivity(new Intent(getApplicationContext(), Register.class));
+            }
+        });
     }
+
+
 }
+
