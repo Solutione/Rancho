@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:hint="Usuario"
+            android:hint="Correo"
             android:inputType="text" />
 
         <EditText
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:text="Login" />
+            android:text="Ingresar" />
 
         <TextView
             android:id="@+id/textViewRegister"
