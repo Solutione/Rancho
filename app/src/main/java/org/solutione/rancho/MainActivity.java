@@ -2,12 +2,12 @@ package org.solutione.rancho;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgJob;
     private ImageView imgStadistics;
     private ImageView imgHistory;
+    private ImageView imgButtonAction;
 
     private LinearLayout lytMenu;
     private LinearLayout lytMenuClose;
@@ -31,18 +32,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        this.imgMenu = (ImageView) findViewById(R.id.imgMenu);
-        this.imgNotification = (ImageView) findViewById(R.id.imgNotification);
-        this.imgJob = (ImageView) findViewById(R.id.imgJob);
-        this.imgStadistics = (ImageView) findViewById(R.id.imgStadistics);
-        this.imgHistory =  (ImageView) findViewById(R.id.imgHistory);
+        this.imgMenu = findViewById(R.id.imgMenu);
+        this.imgNotification = findViewById(R.id.imgNotification);
+        this.imgJob = findViewById(R.id.imgJob);
+        this.imgStadistics = findViewById(R.id.imgStadistics);
+        this.imgHistory = findViewById(R.id.imgHistory);
+        this.imgButtonAction = findViewById(R.id.imgButtonAction);
 
-        this.lytMenu = (LinearLayout) findViewById(R.id.lytMenu);
-        this.lytMenuClose = (LinearLayout) findViewById(R.id.lytMenuClose);
-        this.lytNotification = (LinearLayout) findViewById(R.id.lytNotification);
-        this.lytJob = (LinearLayout) findViewById(R.id.lytJob);
-        this.lytStadistics = (LinearLayout) findViewById(R.id.lytStadistics);
-        this.lytHistory =  (LinearLayout) findViewById(R.id.lytHistory);
+        this.lytMenu = findViewById(R.id.lytMenu);
+        this.lytMenuClose = findViewById(R.id.lytMenuClose);
+        this.lytNotification = findViewById(R.id.lytNotification);
+        this.lytJob = findViewById(R.id.lytJob);
+        this.lytStadistics = findViewById(R.id.lytStadistics);
+        this.lytHistory = findViewById(R.id.lytHistory);
 
 
         setButtons();
@@ -73,8 +75,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 lytJob.setVisibility(View.GONE);
                 lytStadistics.setVisibility((View.GONE));
-                lytHistory.setVisibility(view.GONE);
+                lytHistory.setVisibility(View.GONE);
                 lytNotification.setVisibility(View.VISIBLE);
+
+                imgNotification.setImageResource(R.drawable.notificationb);
+                imgJob.setImageResource(R.drawable.check);
+                imgStadistics.setImageResource(R.drawable.stadistics);
+                imgHistory.setImageResource(R.drawable.piece);
+
+                imgButtonAction.setVisibility(View.GONE);
+
             }
         });
         //Boton Capa de Tareas y Eventos
@@ -86,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
                 lytStadistics.setVisibility((View.GONE));
                 lytHistory.setVisibility(View.GONE);
                 lytJob.setVisibility(View.VISIBLE);
+
+                imgNotification.setImageResource(R.drawable.notification);
+                imgJob.setImageResource(R.drawable.checkb);
+                imgStadistics.setImageResource(R.drawable.stadistics);
+                imgHistory.setImageResource(R.drawable.piece);
+
+                imgButtonAction.setVisibility(View.VISIBLE);
             }
         });
         //Boton Capa de estadisticas
@@ -97,6 +114,13 @@ public class MainActivity extends AppCompatActivity {
                 lytJob.setVisibility((View.GONE));
                 lytHistory.setVisibility(View.GONE);
                 lytStadistics.setVisibility(View.VISIBLE);
+
+                imgNotification.setImageResource(R.drawable.notification);
+                imgJob.setImageResource(R.drawable.check);
+                imgStadistics.setImageResource(R.drawable.stadisticsb);
+                imgHistory.setImageResource(R.drawable.piece);
+
+                imgButtonAction.setVisibility(View.GONE);
             }
         });
 
@@ -109,6 +133,13 @@ public class MainActivity extends AppCompatActivity {
                 lytJob.setVisibility((View.GONE));
                 lytStadistics.setVisibility(View.GONE);
                 lytHistory.setVisibility(View.VISIBLE);
+
+                imgNotification.setImageResource(R.drawable.notification);
+                imgJob.setImageResource(R.drawable.check);
+                imgStadistics.setImageResource(R.drawable.stadistics);
+                imgHistory.setImageResource(R.drawable.pieceb);
+
+                imgButtonAction.setVisibility(View.GONE);
             }
         });
     }
