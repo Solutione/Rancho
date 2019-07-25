@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectSQL {
 
@@ -19,6 +21,8 @@ public class ConnectSQL {
                     Class.forName("org.mariadb.jdbc.Driver").newInstance ();
                     conexionMySQL = DriverManager.getConnection("jdbc:mariadb://35.227.82.116/rancho",
                             "root","tassadar");
+                    Statement stmt = conexionMySQL.createStatement();
+                    stmt.executeQuery("");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {

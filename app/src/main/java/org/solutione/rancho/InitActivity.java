@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.solutione.rancho.api.ConnectSQL;
+
 import java.util.Objects;
 
 public class InitActivity extends AppCompatActivity {
@@ -21,20 +23,10 @@ public class InitActivity extends AppCompatActivity {
         txtAcceder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (getApplicationContext(), ProfileActivity.class);
+                Intent intent = new Intent (getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
-
-        findViewById(R.id.txtRegistrar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open register screen
-                finish();
-                startActivity(new Intent(getApplicationContext(), Register.class));
-            }
-        });
-        new ConnectSQL();
     }
 
 
