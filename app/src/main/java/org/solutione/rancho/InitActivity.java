@@ -34,6 +34,7 @@ public class InitActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Register.class));
             }
         });
+        new ConnectSQL();
     }
 
 

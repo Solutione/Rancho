@@ -6,10 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import java.util.Objects;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView txtDayN1;
+    private TextView txtDayN2;
+    private TextView txtDayN3;
+    private TextView txtDayN4;
+    private TextView txtDayN5;
+    private TextView txtDayN6;
+    private TextView txtDayN7;
+
 
     private ImageView imgMenu;
     private ImageView imgNotification;
@@ -32,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
+        this.txtDayN1 = findViewById(R.id.txtDayN1);
+        this.txtDayN2 = findViewById(R.id.txtDayN2);
+        this.txtDayN3 = findViewById(R.id.txtDayN3);
+        this.txtDayN4 = findViewById(R.id.txtDayN4);
+        this.txtDayN5 = findViewById(R.id.txtDayN5);
+        this.txtDayN6 = findViewById(R.id.txtDayN6);
+        this.txtDayN7 = findViewById(R.id.txtDayN7);
+
         this.imgMenu = findViewById(R.id.imgMenu);
         this.imgNotification = findViewById(R.id.imgNotification);
         this.imgJob = findViewById(R.id.imgJob);
@@ -46,12 +65,11 @@ public class MainActivity extends AppCompatActivity {
         this.lytStadistics = findViewById(R.id.lytStadistics);
         this.lytHistory = findViewById(R.id.lytHistory);
 
-
-        setButtons();
+        setActions();
 
     }
 
-    private void setButtons(){
+    private void setActions(){
         //Boton Menu
         imgMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        setKeyPad();
+        setCalendar();
+    }
+
+    private void setKeyPad(){
         //Boton Capa de Notificaciones
 
         imgNotification.setOnClickListener(new View.OnClickListener() {
@@ -142,5 +165,21 @@ public class MainActivity extends AppCompatActivity {
                 imgButtonAction.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void setCalendar(){
+        Calendar c1 = Calendar.getInstance();
+
+        //first day of week
+        c1.set(Calendar.DAY_OF_WEEK, 1);
+        int day1 = c1.get(Calendar.DAY_OF_MONTH);
+
+        txtDayN1.setText(""+day1);
+        txtDayN2.setText(""+(day1+1));
+        txtDayN3.setText(""+(day1+2));
+        txtDayN4.setText(""+(day1+3));
+        txtDayN5.setText(""+(day1+4));
+        txtDayN6.setText(""+(day1+5));
+        txtDayN7.setText(""+(day1+6));
     }
 }
