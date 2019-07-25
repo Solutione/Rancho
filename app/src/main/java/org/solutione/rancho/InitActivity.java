@@ -7,11 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.solutione.rancho.api.ConnectSQL;
+import org.solutione.rancho.api.Usuario;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class InitActivity extends AppCompatActivity {
@@ -30,8 +27,8 @@ public class InitActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ArrayList<String> al = new ConnectSQL().getData("SELECT * FROM usuario;");
-        System.out.println(al.get(0));
+
+        new Usuario().addUser("juan","lopez perez","masculino","hola@gmail.com","hjkl","link");
     }
 
 

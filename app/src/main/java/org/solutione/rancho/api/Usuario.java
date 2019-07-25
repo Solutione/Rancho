@@ -1,25 +1,30 @@
 package org.solutione.rancho.api;
 
-public class User {
+public class Usuario {
 
     private int id;
     private String nombre;
     private String apeidos;
     private String sexo;
     private String correo;
+    private String password;
     private String foto;
 
-    public User(){
+    public Usuario(){
 
     }
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void addUser(String nombre,String apeidos, String sexo, String correo,String password,String foto){
+        String query = "INSERT INTO usuario " +
+                "(id, nombre, apellidos, sexo, correo, password, foto) VALUES (" +
+                "NULL, '"
+                +nombre+"', '"
+                +apeidos+"', '"
+                +sexo+"', '"
+                +correo+"', '"
+                +password+"', '"
+                +foto+"');";
+        new ConnectSQL().setData(query);
     }
 
     public String getNombre() {
@@ -54,11 +59,11 @@ public class User {
         this.correo = correo;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
