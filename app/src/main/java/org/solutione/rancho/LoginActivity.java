@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 public class LoginActivity extends AppCompatActivity {
 
     EditText editTextUsername, editTextPassword;
@@ -69,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //if everything is fine
 
-        class UserLogin extends AsyncTask<Void, Void, String> {
+        class UserLogin extends AsyncTask<Void, Void, Void> {
 
             ProgressBar progressBar;
 
@@ -81,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute(Void s) {
                 super.onPostExecute(s);
                 progressBar.setVisibility(View.GONE);
 
@@ -119,21 +117,9 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            protected String doInBackground(Void... voids) {
+            protected Void doInBackground(Void... voids) {
                 //creating request handler object
-                RequestHandler requestHandler = new RequestHandler();
 
-                //creating request parameters
-                HashMap<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("password", password);
 
-                //returing the response
-                return requestHandler.sendPostRequest(URLs.URL_LOGIN, params);
-            }
-        }
+            }}
 
-        UserLogin ul = new UserLogin();
-        ul.execute();
-    }
-}
