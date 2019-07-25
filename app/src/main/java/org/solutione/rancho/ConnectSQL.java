@@ -1,4 +1,4 @@
-package org.solutione.rancho.API;
+package org.solutione.rancho;
 
 
 import java.sql.Connection;

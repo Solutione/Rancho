@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.solutione.rancho.API.ConnectSQL;
-
 import java.util.Objects;
 
 public class InitActivity extends AppCompatActivity {
