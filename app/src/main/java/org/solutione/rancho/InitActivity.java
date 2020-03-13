@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.solutione.rancho.api.Usuario;
 
 import java.util.Objects;
 
@@ -28,7 +27,6 @@ public class InitActivity extends AppCompatActivity {
             }
         });
 
-        new Usuario().addUser("juan","lopez perez","masculino","hola@gmail.com","hjkl","link");
     }
 
 
