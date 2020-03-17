@@ -3,10 +3,17 @@ package org.solutione.rancho;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -36,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout lytStadistics;
     private LinearLayout lytHistory;
 
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
         this.lytHistory = findViewById(R.id.lytHistory);
 
         setActions();
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
 
     }
 
@@ -126,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
                 imgHistory.setImageResource(R.drawable.piece);
 
                 imgButtonAction.setVisibility(View.VISIBLE);
+
+
             }
         });
         //Boton Capa de estadisticas
@@ -144,6 +163,11 @@ public class MainActivity extends AppCompatActivity {
                 imgHistory.setImageResource(R.drawable.piece);
 
                 imgButtonAction.setVisibility(View.GONE);
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
             }
         });
 
