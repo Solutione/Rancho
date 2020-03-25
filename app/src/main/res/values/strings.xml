@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Rancho</string>
+    <string name ="AD_IINTER_GOOGLE">ca-app-pub-3940256099942544/1033173712</string>
+       <string name ="AD_IINTER_PRO">ca-app-pub-9987707406222525/5470084142</string>
+<string name="nombrecordero">nombrecordero</string>
+    <string name="peso">peso</string>
+<string name="singnin">registrar</string>
+<string name="cancel">cancel</string>
+    <string-array name="razas_borre">
+        <item>Dorper</item>
+        <item>peliwuey</item>
+        <item>kathadin</item>
+        <item>dorset</item>
+        <item>charol</item>
+        <item>black and belly</item>
+        <item>lanudo</item>
+        <item>criollo</item>
+    </string-array>
 </resources>

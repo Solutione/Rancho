@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "592339549117-uo134nqajo2cjahc31jfko26drddtboa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.solutione.rancho",
+            "certificate_hash": "85a9633168d82ae04121ff92d81e06a7c4425008"
+          }
+        },
+        {
           "client_id": "592339549117-o1l6buqsh72b9m9qo95krfjii2ogeasj.apps.googleusercontent.com",
           "client_type": 3
         }
