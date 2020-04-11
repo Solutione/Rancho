@@ -1,12 +1,15 @@
 package org.solutione.rancho;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,22 +17,30 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
-import org.solutione.rancho.api.addborre;
 
-import static android.widget.Toast.makeText;
+import org.solutione.rancho.api.Borre;
+import org.solutione.rancho.api.ShowBorre;
+import org.solutione.rancho.api.addborre;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.Query;
+
 
 public class MainActivity extends AppCompatActivity {
     ImageView imageView;
-
     private TextView txtDayN1;
     private TextView txtDayN2;
     private TextView txtDayN3;
@@ -37,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtDayN5;
     private TextView txtDayN6;
     private TextView txtDayN7;
+    private AdView mAdView;
 
 
     private ImageView imgMenu;
@@ -56,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private InterstitialAd mInterstitialAd;
 
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+    private FirebaseRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
+        recyclerView = findViewById(R.id.list);
+
         this.imageView = findViewById(R.id.imageView);
 
         this.txtDayN1 = findViewById(R.id.txtDayN1);
@@ -88,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
         this.lytStadistics = findViewById(R.id.lytStadistics);
         this.lytHistory = findViewById(R.id.lytHistory);
         this.salir=findViewById(R.id.lytsalir);
+
+        fetch();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
@@ -97,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                   .into(imageView);
 
         }catch (NullPointerException e){
-            Toast.makeText(getApplicationContext(),"image not found",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"imagen no encontrada",Toast.LENGTH_LONG).show();
         }
 
         setActions();
@@ -107,9 +126,26 @@ public class MainActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-9987707406222525/5470084142");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) { }
+        });
+
+
+
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,6 +200,14 @@ public class MainActivity extends AppCompatActivity {
 
                 imgButtonAction.setVisibility(View.GONE);
                 imgButtonaddChep.setVisibility(View.GONE);
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    mInterstitialAd.show();
+
+
+                }
+
             }
         });
         //Boton Capa de Tareas y Eventos
@@ -183,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
                 imgButtonAction.setVisibility(View.VISIBLE);
                 imgButtonaddChep.setVisibility(View.GONE);
+
 
 
             }
@@ -205,14 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 imgButtonAction.setVisibility(View.GONE);
                 imgButtonaddChep.setVisibility(View.GONE);
 
-                if (mInterstitialAd.isLoaded()) {
-                  //  mInterstitialAd.show();
-                } else {
-                 //   mInterstitialAd.show();
 
-                    makeText(MainActivity.this,"error  ad",
-                            Toast.LENGTH_SHORT).show();
-                }
 
             }
         });
@@ -235,8 +273,18 @@ public class MainActivity extends AppCompatActivity {
                 imgButtonAction.setVisibility(View.GONE);
                 imgButtonaddChep.setVisibility(View.VISIBLE);
 
+                linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setHasFixedSize(true);
+
+
+
             }
+
+
+
         });
+
         imgButtonaddChep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -248,7 +296,73 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void fetch() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        String consuulta = user.getUid() + "/borres";
+        Query query = FirebaseDatabase.getInstance()
+                .getReference()
+                .child(consuulta);
+
+        FirebaseRecyclerOptions<Borre> options =
+                new FirebaseRecyclerOptions.Builder<Borre>()
+                        .setQuery(query, new SnapshotParser<Borre>() {
+                            @NonNull
+
+
+                            @Override
+                            public Borre parseSnapshot(@NonNull DataSnapshot snapshot) {
+
+
+                                return new Borre(snapshot.child("nombrecarnero").getValue().toString(),
+                                        snapshot.child("nombrecarnero").getValue().toString(),
+                                        snapshot.child("fechaparto").getValue().toString()
+                                        ,snapshot.child("proposito").getValue().toString()
+                                        ,snapshot.child("raza").getValue().toString()
+                                        ,snapshot.child("peso").getValue().toString()
+                                        ,snapshot.child("genero").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<Borre,ShowBorre>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ShowBorre holder,final int position, @NonNull Borre model) {
+                   holder.setTxtTitle(model.getNombrecarnero());
+                   holder.setFecha_nacimiento(model.getFechaparto());
+                   holder.setProposito(model.getProposito());
+                   holder.setTxtDesc(model.getraza());
+                   holder.setPeso(model.getpeso());
+                   holder.setGenero(model.getGenero());
+
+                }
+
+
+            @Override
+            public ShowBorre onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.list_item, parent, false);
+
+                return new ShowBorre(view);
+            }
+
+
+        };
+
+        recyclerView.setAdapter(adapter);
+
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
     private void setCalendar(){
         Calendar c1 = Calendar.getInstance();
 
@@ -256,12 +370,14 @@ public class MainActivity extends AppCompatActivity {
         c1.set(Calendar.DAY_OF_WEEK, 1);
         int day1 = c1.get(Calendar.DAY_OF_MONTH);
 
-        txtDayN1.setText(""+(day1-7));
-        txtDayN2.setText(""+(day1-6));
-        txtDayN3.setText(""+(day1-5));
-        txtDayN4.setText(""+(day1-4));
-        txtDayN5.setText(""+(day1-3));
-        txtDayN6.setText(""+(day1-2));
-        txtDayN7.setText(""+(day1-1));
+        txtDayN1.setText(""+(day1));
+        txtDayN2.setText(""+(day1+1));
+        txtDayN3.setText(""+(day1+2));
+        txtDayN4.setText(""+(day1+3));
+        txtDayN5.setText(""+(day1+4));
+        txtDayN6.setText(""+(day1+5));
+        txtDayN7.setText(""+(day1+6));
     }
+
+
 }

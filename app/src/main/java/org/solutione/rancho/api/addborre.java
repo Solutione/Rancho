@@ -142,7 +142,6 @@ public class addborre extends DialogFragment implements AdapterView.OnItemSelect
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-        Toast.makeText(adapterView.getContext(), (String) adapterView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
         razas = (String) adapterView.getItemAtPosition(position);
     }
 

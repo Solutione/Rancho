@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp">
+
+    <LinearLayout
+        android:id="@+id/list_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackground"
+        android:padding="16dp">
+       <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:stretchColumns="1">
+           <TableRow>
+               <TextView
+                   android:id="@+id/nombrelabel"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Nombre"
+                   android:textSize="16sp"
+                   android:gravity="center_horizontal"
+
+                    />
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/black"
+
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+             />
+           </TableRow>
+           <TableRow>
+        <TextView
+            android:id="@+id/raza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:gravity="center_horizontal"
+
+            android:text="raza"
+            />
+        <TextView
+            android:id="@+id/list_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+
+            android:text="Description"
+            android:textStyle="bold"/>
+           </TableRow>
+
+           <TableRow>
+               <TextView
+                   android:id="@+id/fechalabel"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+
+                   android:gravity="center_horizontal"
+
+                   android:text="Fecha de Nacimiento" />
+           <TextView
+            android:id="@+id/fecha_nacimientoshow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+               android:textColor="@android:color/black"
+
+            android:text="Description"
+               android:textStyle="bold"/>
+
+           </TableRow>
+
+           <TableRow>
+               <TextView
+                   android:id="@+id/pesolabel"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+                   android:gravity="center_horizontal"
+
+                   android:text="KG:" />
+           <TextView
+            android:id="@+id/pesoshow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+               android:textColor="@android:color/black"
+
+            android:text="Description"
+               android:textStyle="bold"/>
+           </TableRow>
+           <TableRow>
+               <TextView
+                   android:id="@+id/propositoslabel"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+                   android:gravity="center_horizontal"
+
+                   android:text="proposito" />
+           <TextView
+            android:id="@+id/propositoshow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+               android:textColor="@android:color/black"
+
+            android:text="Description"
+               android:textStyle="bold"/>
+
+           </TableRow>
+           <TableRow>
+               <TextView
+                   android:id="@+id/generolabel"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+                   android:gravity="center_horizontal"
+
+                   android:text="genero" />
+           <TextView
+            android:id="@+id/generoshow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+               android:textColor="@android:color/black"
+
+            android:text="genero"
+               android:textStyle="bold"/>
+           </TableRow>
+
+       </TableLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -48,6 +49,8 @@ public class InitActivity  extends  AppCompatActivity {
         setContentView(R.layout.activity_init);
         Objects.requireNonNull(getSupportActionBar()).hide();
         //first we intialized the FirebaseAuth object
+        MobileAds.initialize(this, "ca-app-pub-9987707406222525~4396126883");
+
         mAuth = FirebaseAuth.getInstance();
 
         //Then we need a GoogleSignInOptions object
@@ -126,8 +129,7 @@ public class InitActivity  extends  AppCompatActivity {
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(InitActivity.this, "Authentication failed.",
+                            Toast.makeText(InitActivity.this, "ERROR AL AUTENTIFICAR",
                                     Toast.LENGTH_SHORT).show();
 
                         }
