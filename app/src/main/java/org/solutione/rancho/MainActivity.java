@@ -28,13 +28,17 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
 import org.solutione.rancho.api.Borre;
+import org.solutione.rancho.api.Notifications;
 import org.solutione.rancho.api.ShowBorre;
+import org.solutione.rancho.api.ShowNotifi;
 import org.solutione.rancho.api.addborre;
+ import org.solutione.rancho.api.addnotifi;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 
@@ -68,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private InterstitialAd mInterstitialAd;
 
-    private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
-    private FirebaseRecyclerAdapter adapter;
+    private RecyclerView recyclerView,recyclerViewNoti;
+    private LinearLayoutManager linearLayoutManager,linearLayoutManagerNoti;
+    private FirebaseRecyclerAdapter adapter,adapterNoti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.list);
-
+        recyclerViewNoti=findViewById(R.id.list_notificacion);
         this.imageView = findViewById(R.id.imageView);
 
         this.txtDayN1 = findViewById(R.id.txtDayN1);
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         this.salir=findViewById(R.id.lytsalir);
 
         fetch();
+       fetchnoti();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
@@ -207,6 +212,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+                linearLayoutManagerNoti = new LinearLayoutManager(getApplicationContext());
+                recyclerViewNoti.setLayoutManager(linearLayoutManagerNoti);
+                recyclerViewNoti.setHasFixedSize(true);
 
             }
         });
@@ -227,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
                 imgButtonAction.setVisibility(View.VISIBLE);
                 imgButtonaddChep.setVisibility(View.GONE);
-
+new addnotifi().selenio();
 
 
             }
@@ -288,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         imgButtonaddChep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new addborre().show(getSupportFragmentManager(), "SimpleDialog");
+                new addborre().show(getSupportFragmentManager(), "Agregar borregos");
 
 
             }
@@ -356,12 +364,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         adapter.startListening();
+       adapterNoti.startListening();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+        adapterNoti.stopListening();
     }
     private void setCalendar(){
         Calendar c1 = Calendar.getInstance();
@@ -379,5 +389,53 @@ public class MainActivity extends AppCompatActivity {
         txtDayN7.setText(""+(day1+6));
     }
 
+    private void fetchnoti() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String consuulta = user.getUid() + "/notificaciones";
+                Query query = FirebaseDatabase.getInstance()
+                .getReference()
+                .child(consuulta);
+
+        FirebaseRecyclerOptions<Notifications> options =
+                new FirebaseRecyclerOptions.Builder<Notifications>()
+                        .setQuery(query, new SnapshotParser<Notifications>() {
+                            @NonNull
+
+
+                            @Override
+                            public Notifications parseSnapshot(@NonNull DataSnapshot snapshot) {
+
+
+                                return new Notifications(snapshot.child("titulo").getValue().toString(),
+                                        snapshot.child("informacion").getValue().toString(),
+                                        snapshot.child("cordero").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapterNoti = new FirebaseRecyclerAdapter<Notifications, ShowNotifi>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ShowNotifi holder,final int position, @NonNull Notifications model) {
+                holder.setTitle(model.getTitulo());
+                holder.setInformation(model.getInformacion());
+                holder.setCordero(model.getcordero());
+            }
+
+
+            @Override
+            public ShowNotifi onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.list_notifi, parent, false);
+
+                return new ShowNotifi(view);
+            }
+
+
+        };
+
+        recyclerViewNoti.setAdapter(adapterNoti);
+
+    }
 
 }

@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
@@ -25,9 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.solutione.rancho.R;
 
-import java.text.BreakIterator;
 
-import static android.content.ContentValues.TAG;
 
 
 public class addborre extends DialogFragment implements AdapterView.OnItemSelectedListener {
@@ -88,9 +85,9 @@ public class addborre extends DialogFragment implements AdapterView.OnItemSelect
 
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        String tipoparto=null;
-                        String proposito=null;
-                        String genero=null;
+                        String tipoparto="simple";
+                        String proposito="cria";
+                        String genero="hembra";
                         int idDeRadioButtonSeleccionado = radioGroupTipoParto.getCheckedRadioButtonId();
                         if (idDeRadioButtonSeleccionado == radioButtonsimple.getId()) {
                             tipoparto="simple";
@@ -132,7 +129,8 @@ public class addborre extends DialogFragment implements AdapterView.OnItemSelect
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                       addborre.this.getDialog().cancel();
+
+                        addborre.this.getDialog().cancel();
                     }
                 });
 

@@ -2,15 +2,15 @@
 package org.solutione.rancho.api;
 
 public class Borre {
-public String raza;
-public String peso;
-public String idfinca;
-public String fechaparto;
-public String nombrecarnero;
-public String tipoparto;
-public String proposito;
-public String genero;
-public String id;
+private String raza;
+private String peso;
+private String idfinca;
+private String fechaparto;
+private String nombrecarnero;
+private String tipoparto;
+private String proposito;
+private String genero;
+private String id;
 public Borre(){}
 
 public Borre(String raza,String peso,String idfinca,String fechaparto,String nombrecarnero,String tipoparto,String proposito,String genero){
