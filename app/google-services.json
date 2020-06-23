@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "592339549117-0r9qk4daolrkfqtbhdqr8qilh68skn5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.solutione.rancho",
+            "certificate_hash": "a9da87997ee6bc7beec31b2f8403fbdb1fcb1071"
+          }
+        },
+        {
           "client_id": "592339549117-uo134nqajo2cjahc31jfko26drddtboa.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -41,7 +49,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-9987707406222525~4396126883"
     }
   ],
   "configuration_version": "1"

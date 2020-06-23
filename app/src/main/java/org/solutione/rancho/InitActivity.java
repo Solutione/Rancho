@@ -33,7 +33,6 @@ public class InitActivity  extends  AppCompatActivity {
 
     //a constant for detecting the login intent result
     private static final int RC_SIGN_IN = 234;
-
     //Tag for the logs optional
     private static final String TAG = "rancho";
 
@@ -105,7 +104,8 @@ public class InitActivity  extends  AppCompatActivity {
                 //authenticating with firebase
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
-                Toast.makeText(InitActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+              Log.e(TAG,e.getMessage());
+                //  Toast.makeText(InitActivity.this, "este es el error"+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }

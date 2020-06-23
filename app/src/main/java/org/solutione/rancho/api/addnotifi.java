@@ -22,7 +22,7 @@ import java.util.Date;
 public class addnotifi {
 
     public void selenio(){
-        Notifications Ntfselenio= new Notifications("Inyeccion de selenio","El selenio se inyecta al tercer dia","campeon");
+        Notifications Ntfselenio= new Notifications("1","Inyeccion de selenio","El selenio se inyecta al tercer dia","1");
         String date = new SimpleDateFormat("dd/M/yyyy").format(new Date());
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -41,14 +41,11 @@ public class addnotifi {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot user: snapshot.getChildren()) {
-                    Firebsase statusRef = user.child("password").getRef();
-                    statusRef.setValue("COMPLETED");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "getUser:onCancelled", databaseError.toException());
             }
         });
 

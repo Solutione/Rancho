@@ -399,7 +399,7 @@ new addnotifi().selenio();
 
         FirebaseRecyclerOptions<Notifications> options =
                 new FirebaseRecyclerOptions.Builder<Notifications>()
-                        .setQuery(query, new SnapshotParser<Notifications>() {
+                        .setQuery(query.orderByChild("ready").equalTo("0"), new SnapshotParser<Notifications>() {
                             @NonNull
 
 
@@ -407,7 +407,8 @@ new addnotifi().selenio();
                             public Notifications parseSnapshot(@NonNull DataSnapshot snapshot) {
 
 
-                                return new Notifications(snapshot.child("titulo").getValue().toString(),
+                                return new Notifications(snapshot.child("ready").getValue().toString(),
+                                        snapshot.child("titulo").getValue().toString(),
                                         snapshot.child("informacion").getValue().toString(),
                                         snapshot.child("cordero").getValue().toString());
                             }
@@ -417,7 +418,7 @@ new addnotifi().selenio();
         adapterNoti = new FirebaseRecyclerAdapter<Notifications, ShowNotifi>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ShowNotifi holder,final int position, @NonNull Notifications model) {
-                holder.setTitle(model.getTitulo());
+                   holder.setTitle(model.getTitulo());
                 holder.setInformation(model.getInformacion());
                 holder.setCordero(model.getcordero());
             }

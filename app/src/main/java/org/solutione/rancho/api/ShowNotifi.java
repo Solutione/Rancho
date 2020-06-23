@@ -22,6 +22,7 @@ public TextView cordero;
         cordero=itemView.findViewById(R.id.Cordero_notifi);
 
     }
+
     public void setTitle(String string){
         Title.setText(string);
     }

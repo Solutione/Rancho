@@ -18,7 +18,13 @@
         android:orientation="vertical"
         android:background="?attr/selectableItemBackground"
         android:padding="16dp">
-
+        <CheckBox
+            android:id="@+id/Ready"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Listo" />
                 <TextView
                     android:id="@+id/Title_notifi"
                     android:layout_width="match_parent"
